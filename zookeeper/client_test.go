@@ -41,3 +41,17 @@ func TestZookeeperClient_GetChildren(t *testing.T) {
 		}
 	}
 }
+
+func TestZookeeperClient_Create(t *testing.T) {
+	client,err := NewClient("test-zk",[]string{"10.12.33.33"},10*time.Second)
+	if err != nil {
+		t.Errorf("new zookeeper client err: %v",err)
+	}else{
+		err := client.Create("/zookeeper-go-test")
+		if err != nil {
+			t.Errorf("create zk node err: %v",err)
+		}else {
+			t.Logf("create zk node success")
+		}
+	}
+}
