@@ -239,6 +239,10 @@ func (z *ZookeeperClient) Create(basePath string) error {
 	return nil
 }
 
+func (client *ZookeeperClient)Set(path string,content []byte,version int32)(*zk.Stat, error)  {
+	return client.Conn.Set(path,content,version)
+}
+
 func (z *ZookeeperClient) Delete(basePath string) error {
 	var (
 		err error
